@@ -1,0 +1,101 @@
+import java.time.LocalDateTime
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group 'com.sherlocky'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven {
+        url maven_url
+    }
+}
+
+dependencies {
+    api 'commons-codec:commons-codec:1.12'
+    //api 'commons-io:commons-io:2.6'
+    api 'org.apache.commons:commons-lang3:3.9'
+    api 'com.alibaba:fastjson:1.2.58'
+
+    compileOnly "javax.servlet:javax.servlet-api:3.1.0"
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+//@deprecated
+task buildJar(type: Jar) {
+    from 'build/classes/java/main'
+    //exclude('/META-INF','/fastjson.properties')
+    manifest {
+        attributes(
+                'Manifest-Version': "1.0",
+                'Bundle-Name': "${project.name}",
+                'Bundle-Version': "${project.version}",
+                'Created-By': 'Java ' + System.getProperty('java.version') + ' (' + System.getProperty('java.vendor') + ')',
+                'Built-Date': LocalDateTime.now(),
+                'Built-With': "gradle-${project.getGradle().getGradleVersion()}, groovy-${GroovySystem.getVersion()}"
+        )
+    }
+}
+
+publishing {
+    publications {
+        sherlockMaven(MavenPublication) {
+            /** 默认使用项目的group/name/version信息 */
+            //groupId = 'org.sherlocky'
+            //artifactId = 'sherlocky-commons'
+            //version = '0.0.1-SNAPSHOT'
+            /** 如果是war包填写components.web，如果是jar包填写components.java,不过该方法没有manifest信息(会自动附带pom依赖信息) */
+            from components.java
+            //artifact buildJar
+            artifact sourcesJar
+            /**
+            pom {
+                name = 'sherlocky-commons'
+                description = 'sherlocky\'s commons library'
+                url = 'http://gblog.sherlocky.com'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'sherlock'
+                        name = 'sherlock'
+                        email = 'y836097668@126.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://gitee.com/sherlocky/sherlocky-commons.git'
+                    developerConnection = 'scm:git:ssh://gitee.com/sherlocky/sherlocky-commons.git'
+                    url = 'http://gblog.sherlocky.com'
+                }
+            }
+            */
+
+        }
+    }
+
+    repositories {
+        maven {
+            url = sherlock_maven_url
+            credentials {
+                username sherlock_maven_username
+                password sherlock_maven_password
+            }
+        }
+    }
+}
