@@ -1,15 +1,17 @@
-import java.time.LocalDateTime
-
 plugins {
     id 'java'
+    /** 可对外暴露 api dependencies */
     id 'java-library'
     id 'maven-publish'
+    id 'signing'
 }
 
 group 'com.sherlocky'
-version '0.0.1-SNAPSHOT'
+version '0.0.1'
 
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     maven {
@@ -35,62 +37,102 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-//@deprecated
-task buildJar(type: Jar) {
-    from 'build/classes/java/main'
-    //exclude('/META-INF','/fastjson.properties')
-    manifest {
-        attributes(
-                'Manifest-Version': "1.0",
-                'Bundle-Name': "${project.name}",
-                'Bundle-Version': "${project.version}",
-                'Created-By': 'Java ' + System.getProperty('java.version') + ' (' + System.getProperty('java.vendor') + ')',
-                'Built-Date': LocalDateTime.now(),
-                'Built-With': "gradle-${project.getGradle().getGradleVersion()}, groovy-${GroovySystem.getVersion()}"
-        )
-    }
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+javadoc {
+    description = "生成jar格式的javadoc。"
+    // 只显示 protected 和 public 的类和成员
+    options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+    options.author = true
+    options.version = true
+    options.header = project.name
+    // 静默javadoc检查（比如不支持@date会报错等），jdk 8+
+    options.addStringOption('Xdoclint:none', '-quiet')
+    /**
+     * <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     * 防止本地打开中文乱码
+     */
+    options.addStringOption("charset", "UTF-8")
+    // suppress warnings due to cross-module @see and @link references;
+    // note that global 'api' task does display all warnings.
+    logging.captureStandardError LogLevel.INFO
+    // suppress "## warnings" message
+    logging.captureStandardOutput LogLevel.INFO
+    // 编码一定要配置否则直接出错
+    options.encoding = "UTF-8"
+    options.charSet = "UTF-8"
 }
 
 publishing {
     publications {
-        sherlockMaven(MavenPublication) {
+        mavenJava(MavenPublication) {
             /** 默认使用项目的group/name/version信息 */
-            //groupId = 'org.sherlocky'
-            //artifactId = 'sherlocky-commons'
-            //version = '0.0.1-SNAPSHOT'
-            /** 如果是war包填写components.web，如果是jar包填写components.java,不过该方法没有manifest信息(会自动附带pom依赖信息) */
-            from components.java
-            //artifact buildJar
-            artifact sourcesJar
             /**
+             groupId = 'org.sherlocky'
+             artifactId = 'sherlocky-commons'
+             version = '0.0.1'
+             */
+            /**
+             * 如果是war包填写components.web，
+             * 如果是jar包填写components.java,
+             * 不过该方法没有manifest信息(会自动附带pom依赖信息)
+             */
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
             pom {
                 name = 'sherlocky-commons'
-                description = 'sherlocky\'s commons library'
-                url = 'http://gblog.sherlocky.com'
+                description = 'Sherlock\'s simple common library. Need JDK 8+.'
+                url = 'https://gitee.com/sherlocky/sherlocky-commons'
                 licenses {
                     license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name = 'MIT License'
+                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                        distribution = 'repo'
                     }
                 }
                 developers {
                     developer {
-                        id = 'sherlock'
-                        name = 'sherlock'
+                        id = 'sherlocky'
+                        name = 'Sherlocky'
                         email = 'y836097668@126.com'
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://gitee.com/sherlocky/sherlocky-commons.git'
-                    developerConnection = 'scm:git:ssh://gitee.com/sherlocky/sherlocky-commons.git'
-                    url = 'http://gblog.sherlocky.com'
+                    url = 'https://gitee.com/sherlocky/sherlocky-commons'
+                    connection = 'scm:git:https://gitee.com/sherlocky/sherlocky-commons.git'
+                    developerConnection = 'scm:git:git@gitee.com:sherlocky/sherlocky-commons.git'
                 }
             }
-            */
-
         }
     }
 
+    // 发布到oss sonatype,非SNAPSHOT版必须GPG签名
+    repositories {
+        maven {
+            name = 'oss'
+            url = oss_sonatype_maven_url
+            credentials {
+                username oss_sonatype_maven_username
+                password oss_sonatype_maven_password
+            }
+        }
+        /** oss snapshot 仓库，必须携带 -SNAPSHOT 后缀
+        maven {
+            name = 'oss-snapshot'
+            url = oss_sonatype_snapshot_maven_url
+            credentials {
+                username = oss_sonatype_maven_username
+                password = oss_sonatype_maven_password
+            }
+        }
+        */
+    }
+
+    /** 发布到自建maven仓库，无需签名
     repositories {
         maven {
             url = sherlock_maven_url
@@ -99,5 +141,11 @@ publishing {
                 password sherlock_maven_password
             }
         }
+    }
+    */
+
+    //GPG 签名jar包
+    signing {
+        sign publishing.publications.mavenJava
     }
 }
