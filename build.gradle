@@ -144,7 +144,10 @@ publishing {
     }
     */
 
-    //GPG 签名jar包
+    /**
+     * GPG 签名jar包配置，注意顺序，必须在 publishing 配置之后
+     * （因为使用了 publishing 中定义的 mavenJava）
+     */
     signing {
         sign publishing.publications.mavenJava
     }
