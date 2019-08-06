@@ -18,12 +18,14 @@ repositories {
 }
 
 dependencies {
-    api 'commons-codec:commons-codec:1.12'
-    //api 'commons-io:commons-io:2.6'
+    api 'org.slf4j:slf4j-api:1.7.26'
     api 'org.apache.commons:commons-lang3:3.9'
+    api 'org.apache.commons:commons-collections4:4.4'
     api 'com.alibaba:fastjson:1.2.58'
 
     compileOnly "javax.servlet:javax.servlet-api:3.1.0"
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
