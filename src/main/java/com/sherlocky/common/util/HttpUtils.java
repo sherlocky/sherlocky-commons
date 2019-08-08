@@ -50,7 +50,7 @@ public class HttpUtils {
         }
         try {
             // 微软系浏览器
-            if (StringUtils.containsAny(fileName, "MSIE", "Trident", "Edge")) {
+            if (StringUtils.containsAny(agent, "MSIE", "Trident", "Edge")) {
                 return URLEncoder.encode(fileName, ENCODING).replace("+", "%20");
             }
             if (agent.contains("Safari")) {
