@@ -23,6 +23,7 @@ dependencies {
     api 'org.slf4j:slf4j-api:1.7.26'
     api 'org.apache.commons:commons-lang3:3.9'
     api 'org.apache.commons:commons-collections4:4.4'
+    api 'commons-codec:commons-codec:1.12'
     api 'com.alibaba:fastjson:1.2.58'
 
     compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
@@ -86,7 +87,7 @@ publishing {
             pom {
                 name = 'sherlocky-commons'
                 description = 'Sherlock\'s simple common library. Need JDK 8+.'
-                url = 'https://gitee.com/sherlocky/sherlocky-commons'
+                url = 'https://github.com/y836097668/sherlocky-commons'
                 licenses {
                     license {
                         name = 'Apache License, Version 2.0'
@@ -104,9 +105,9 @@ publishing {
                     }
                 }
                 scm {
-                    url = 'https://gitee.com/sherlocky/sherlocky-commons'
-                    connection = 'scm:git:https://gitee.com/sherlocky/sherlocky-commons.git'
-                    developerConnection = 'scm:git:git@gitee.com:sherlocky/sherlocky-commons.git'
+                    url = 'https://github.com/y836097668/sherlocky-commons'
+                    connection = 'scm:git:https://git@github.com/y836097668/sherlocky-commons.git'
+                    developerConnection = 'scm:git:git@github.com:y836097668/sherlocky-commons.git'
                 }
             }
         }
