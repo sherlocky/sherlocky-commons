@@ -15,13 +15,25 @@
  */
 package com.sherlocky.common.util;
 
+import com.sherlocky.common.constant.CommonConstants;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLEncoder;
 import java.util.Base64;
+import java.util.Map;
 
 import static com.sherlocky.common.constant.CommonConstants.ENCODING;
 
@@ -107,5 +119,116 @@ public class HttpUtils {
 
     private static boolean unknown(String ip) {
         return StringUtils.isBlank(ip) || "unknown".equalsIgnoreCase(ip);
+    }
+
+    /**
+     * 下载文件
+     * @param downloadUrl 下载地址
+     * @param destFilePath 文件下载目标路径
+     * @return
+     */
+    public static boolean downloadFile(String downloadUrl, String destFilePath) {
+        return HttpUtils.downloadFile(downloadUrl, null, destFilePath, false);
+    }
+
+    /**
+     * 下载文件
+     * @param downloadUrl 下载地址
+     * @param httpHeaders 下载可能需要的 Header 信息
+     * @param destFilePath 文件下载目标路径
+     * @param forceDeleteOnExit
+     * @return
+     */
+    public static boolean downloadFile(String downloadUrl, Map<String, String> httpHeaders, String destFilePath, boolean forceDeleteOnExit) {
+        Asserts.notNull(downloadUrl, "$$$ downloadUrl 不能为 null！");
+        Asserts.notNull(destFilePath, "$$$ destFilePath 不能为 null！");
+        /**
+         * 校验下载链接，如果下载链接不包含协议头，默认加一个,否则无法下载
+         */
+        if (!downloadUrl.contains(CommonConstants.SCHEMA_SEPARATOR)) {
+            downloadUrl = String.format("%s%s%s", CommonConstants.DEFAULT_SCHEMA, CommonConstants.SCHEMA_SEPARATOR, downloadUrl);
+        }
+        destFilePath = FilenameUtils.normalizeNoEndSeparator(destFilePath);
+        File destFile = new File(destFilePath);
+        // 强制创建目录结构
+        try {
+            FileUtils.forceMkdirParent(destFile);
+        } catch (IOException e) {
+            log.error("$$$ 目录结构创建失败！", e);
+        }
+        if (!destFile.getParentFile().exists() || !destFile.getParentFile().isDirectory()) {
+            return false;
+        }
+        boolean isExists = destFile.exists();
+        if (isExists && !forceDeleteOnExit) {
+            if (log.isInfoEnabled()) {
+                log.info("### 文件已存在，无需下载~ " + destFilePath);
+            }
+            return true;
+        }
+        // 如果已存在，先删除掉
+        if (isExists && !FileUtils.deleteQuietly(destFile)) {
+            // 如删除失败，退出
+            log.error("$$$ 文件下载失败，已存在同名文件，且无法删除！" + destFilePath);
+            return false;
+        }
+        /**
+         * FileUtils.copyURLToFile 必须带协议头，且不支持http->https的协议自动重定向，弃用
+         */
+        copyURLToFileByHttpClient(downloadUrl, httpHeaders, destFile);
+        // 下载后校验
+        if (destFile.exists() && destFile.length() > 0) {
+            if (log.isInfoEnabled()) {
+                log.info("### 下载成功！" + destFilePath);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private static void copyURLToFileByHttpClient(String downloadUrl, Map<String, String> headers, File destFile) {
+        if (log.isDebugEnabled()) {
+            log.debug("@@@@@@ 下载开始：%s", downloadUrl);
+        }
+        CloseableHttpClient httpClient = null;
+        InputStream in = null;
+        FileOutputStream out = null;
+        CloseableHttpResponse response = null;
+        try {
+            httpClient = HttpClients.createDefault();
+            HttpGet httpGet = new HttpGet(downloadUrl);
+            if (MapUtils.isNotEmpty(headers)) {
+                // 设置header
+                for (Map.Entry<String, String> entry : headers.entrySet()) {
+                    httpGet.setHeader(entry.getKey(), entry.getValue());
+                }
+            }
+            response = httpClient.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                try {
+                    in = entity.getContent();
+                    out = new FileOutputStream(destFile);
+                    IOUtils.copy(in, out);
+                    EntityUtils.consume(entity);
+                } catch (IOException e) {
+                    log.error("$$$ 下载文件流出错！", e);
+                } finally {
+                    IOUtils.closeQuietly(out);
+                    IOUtils.closeQuietly(in);
+                }
+            }
+            if (log.isInfoEnabled()) {
+                log.info("### 状态码：{}", response.getStatusLine().getStatusCode());
+            }
+        } catch (IOException e) {
+            log.error(String.format("$$$ 请求文件下载失败，下载地址 -> %s 路径：%s", downloadUrl, destFile.getAbsolutePath()), e);
+        } finally {
+            IOUtils.closeQuietly(response);
+            IOUtils.closeQuietly(httpClient);
+        }
+        if (log.isDebugEnabled()) {
+            log.debug("@@@@@@ 下载完成。");
+        }
     }
 }

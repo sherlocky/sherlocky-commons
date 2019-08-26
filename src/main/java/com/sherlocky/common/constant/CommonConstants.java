@@ -23,4 +23,8 @@ package com.sherlocky.common.constant;
 public class CommonConstants {
     /** 常用编码，utf-8 */
     public static final String ENCODING = "UTF-8";
+    /** 默认的http协议 */
+    public static final String DEFAULT_SCHEMA = "http";
+    /** http协议分隔符 */
+    public static final String SCHEMA_SEPARATOR = "://";
 }
