@@ -1,6 +1,6 @@
 package com.sherlocky.common.util;
 
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nullable;
 
 /**
  * 常用断言 工具类
