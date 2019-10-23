@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 常用断言 工具类
@@ -42,6 +43,30 @@ public final class Asserts {
      */
     public static void isTrue(boolean expression, String message) {
         if (!expression) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    /**
+     * 断言两个对象是否相等
+     * @param left
+     * @param right
+     * @param message
+     */
+    public static void equals(Object left, Object right, String message) {
+        if (!Objects.equals(left, right)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    /**
+     * 断言两个对象是否深度相等（支持数组元素的比较）
+     * @param left
+     * @param right
+     * @param message
+     */
+    public static void deepEquals(Object left, Object right, String message) {
+        if (!Objects.deepEquals(left, right)) {
             throw new IllegalArgumentException(message);
         }
     }
