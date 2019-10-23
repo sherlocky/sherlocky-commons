@@ -23,13 +23,17 @@ dependencies {
     api 'org.slf4j:slf4j-api:1.7.26'
     api 'org.apache.commons:commons-lang3:3.9'
     api 'org.apache.commons:commons-collections4:4.4'
+    api 'org.apache.httpcomponents:httpclient:4.5.9'
     api 'commons-codec:commons-codec:1.12'
     api 'commons-io:commons-io:2.6'
-    api 'com.alibaba:fastjson:1.2.58'
+    api 'com.alibaba:fastjson:1.2.62'
     api 'org.hashids:hashids:1.0.3'
-    api 'org.apache.httpcomponents:httpclient:4.5.9'
+
+    api 'com.google.guava:guava:28.1-jre'
     // javax.annotation.Nullable
     api 'com.google.code.findbugs:jsr305:3.0.2'
+
+    //api 'cn.hutool:hutool-all:5.0.2'
 
     compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
     compileOnly 'org.projectlombok:lombok:1.18.8'
