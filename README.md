@@ -16,11 +16,11 @@ Sherlcok 自用公共基础包
 <dependency>
   <groupId>com.sherlocky</groupId>
   <artifactId>sherlocky-commons</artifactId>
-  <version>0.0.6</version>
+  <version>0.0.7</version>
 </dependency>
 ```
 
 ##### gradle
 ```groovy
-implementation 'com.sherlocky:sherlocky-commons:0.0.6'
+implementation 'com.sherlocky:sherlocky-commons:0.0.7'
 ```
