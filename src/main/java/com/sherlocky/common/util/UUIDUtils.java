@@ -7,7 +7,7 @@ import java.util.UUID;
 /**
  * UUID 工具类
  */
-public class UUIDUtils {
+public final class UUIDUtils {
 
     private UUIDUtils() {
     }

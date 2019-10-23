@@ -13,8 +13,9 @@ import java.util.zip.CheckedInputStream;
  * 加密工具类，包含BASE64,SHA,CRC32
  */
 @Slf4j
-public class CryptoUtils {
+public final class CryptoUtils {
 
+    private CryptoUtils() {}
 
     /**
      * SHA1 散列

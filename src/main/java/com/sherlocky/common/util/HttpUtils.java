@@ -44,7 +44,9 @@ import static com.sherlocky.common.constant.CommonConstants.ENCODING;
  * @date: 2019/8/1 15:03
  */
 @Slf4j
-public class HttpUtils {
+public final class HttpUtils {
+    private HttpUtils() {}
+
     /**
      * 中文文件名编码转换（例如：下载文件文件名包含中文时, 部分浏览器会乱码）
      *

@@ -28,7 +28,7 @@ import java.security.NoSuchAlgorithmException;
  * @date 2019-8-4
  */
 @Slf4j
-public class Md5Utils {
+public final class Md5Utils {
     /** HmacMD5 加密算法 */
     private static final String ALGORITHM_MAC = "HmacMD5";
     private static MessageDigest MD5 = null;
@@ -40,6 +40,8 @@ public class Md5Utils {
             ne.printStackTrace();
         }
     }
+
+    private Md5Utils() {}
 
     public static String getFileMd5(String filePath) {
         if (StringUtils.isBlank(filePath)) {
