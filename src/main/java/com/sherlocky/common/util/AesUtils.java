@@ -2,7 +2,6 @@ package com.sherlocky.common.util;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.Cipher;
@@ -43,14 +42,15 @@ public final class AesUtils {
      * @param encryptKey 密钥（长度必须为16个字节）
      * @return java.lang.String
      */
-    public static byte[] encrypt(String content, String encryptKey) {
+    public static String encrypt(String content, String encryptKey) {
         try {
             //根据指定算法AES自成密码器
             Cipher cipher = Cipher.getInstance(CIPHER_MODE);
             //初始化密码器，第一个参数为加密(Encrypt_mode)或者解密解密(Decrypt_mode)操作，第二个参数为使用的KEY
             cipher.init(Cipher.ENCRYPT_MODE, aesKey(encryptKey), aesIv(encryptKey));
             //根据密码器的初始化方式--加密：将数据加密
-            return cipher.doFinal(content.getBytes(StandardCharsets.UTF_8));
+            byte[] encrypt = cipher.doFinal(content.getBytes());
+            return CryptoUtils.encodeBase64(encrypt);
         } catch (Exception e) {
             log.error("$$$ AES加密失败", e);
         }
@@ -59,19 +59,20 @@ public final class AesUtils {
 
     /**
      * 解密
-     *
+     * <p>注意：加密后的byte数组是不能强制转换成字符串的，换言之：字符串和byte数组在这种情况下不是互逆的</p>
      * @param content 密文
      * @param decryptKey 密钥（长度必须为16个字节）
      * @return java.lang.String
      */
-    public static byte[] decrypt(String content, String decryptKey) {
+    public static String decrypt(String content, String decryptKey) {
         try {
             //根据指定算法AES自成密码器
             Cipher cipher = Cipher.getInstance(CIPHER_MODE);
             //初始化密码器，第一个参数为加密(Encrypt_mode)或者解密解密(Decrypt_mode)操作，第二个参数为使用的KEY
-            cipher.init(Cipher.ENCRYPT_MODE, aesKey(decryptKey), aesIv(decryptKey));
+            cipher.init(Cipher.DECRYPT_MODE, aesKey(decryptKey), aesIv(decryptKey));
             // 解密
-            return cipher.doFinal(content.getBytes(StandardCharsets.UTF_8));
+            byte[] decrypt = cipher.doFinal(CryptoUtils.decodeBase64ToBytes(content));
+            return new String(decrypt);
         } catch (NoSuchAlgorithmException e) {
             log.error("$$$ 没有指定的加密算法", e);
         } catch (IllegalBlockSizeException e) {
@@ -82,28 +83,6 @@ public final class AesUtils {
             log.error("$$$ 秘钥AES解析出现未知错误", e);
         }
         return null;
-    }
-
-    //TODO 加密后通常配合 base64 或者 Hex 编码
-
-    /**
-     * 加密后以Base64编码
-     * @param content
-     * @param encryptKey
-     * @return
-     */
-    public static String encryptBase64(String content, String encryptKey) {
-        return CryptoUtils.encodeBase64(encrypt(content, encryptKey));
-    }
-
-    /**
-     * 加密后转为16进制形式
-     * @param content
-     * @param encryptKey
-     * @return
-     */
-    public static String encryptHex(String content, String encryptKey) {
-        return new String(new Hex(StandardCharsets.UTF_8).encode(encrypt(content, encryptKey)), StandardCharsets.UTF_8);
     }
 
     /**

@@ -1,9 +1,8 @@
 package com.sherlocky.common.util;
 
-import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.junit.Test;
-
-import java.nio.charset.StandardCharsets;
 
 /**
  * AES 工具类测试
@@ -14,15 +13,21 @@ public class AesUtilsTest {
 
     @Test
     public void test() {
-        String src = "1233";
-        String k = "123";
+        String key = RandomStringUtils.randomAlphanumeric(16);//"1234567890";
+        String[] words = {
+                "", "123456", "word"
+        };
+        System.out.println("word | AESEncode | AESDecode");
+        for (String word : words) {
+            System.out.print(word + " | ");
+            String encryptString = AesUtils.encrypt(word, key);
+            System.out.print(encryptString + " | ");
+            String decryptString = AesUtils.decrypt(encryptString, key);
+            System.out.println(decryptString);
+        }
 
-        System.out.println(AesUtils.encryptBase64(src, k));
-        System.out.println(CryptoUtils.encodeBase64(AesUtils.encrypt(src, k)));
-        System.out.println(AesUtils.encryptHex(src, k));
-
-        byte[] bs = AesUtils.encrypt(src, k);
-        System.out.println(new String(new Hex(StandardCharsets.UTF_8).encode(bs), StandardCharsets.UTF_8));
-        System.out.println(Hex.encodeHexString(bs));
+        // 单个测试
+        String word = "hello";
+        Assert.assertEquals(word, AesUtils.decrypt(AesUtils.encrypt(word, key), key));
     }
 }
