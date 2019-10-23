@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 /**
  * XSS 工具类
  */
-public final class XssUtil {
+public final class XssUtils {
     private static final String STR_SCRIPT1 = "<script>(.*?)</script>";
     private static final String STR_SCRIPT2 = "</script>";
     private static final String STR_SCRIPT3 = "<script(.*?)>";
@@ -15,7 +15,7 @@ public final class XssUtil {
     private static final String STR_VB = "vbscript:";
     private static final String STR_ON = "onload(.*?)=";
 
-    private XssUtil() {}
+    private XssUtils() {}
 
     /**
      * 过滤XSS脚本内容
