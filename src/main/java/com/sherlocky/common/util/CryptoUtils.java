@@ -105,6 +105,15 @@ public final class CryptoUtils {
     }
 
     /**
+     * BASE64 解密，将字符串解密为 byte[]
+     * @param content
+     * @return
+     */
+    public static byte[] decodeBase64ToBytes(String content) {
+        return Base64.getDecoder().decode(content);
+    }
+
+    /**
      * BASE64解密,默认UTF-8
      *
      * @param str a {@link String} object.
