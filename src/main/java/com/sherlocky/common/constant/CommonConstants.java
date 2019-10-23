@@ -20,7 +20,7 @@ package com.sherlocky.common.constant;
  * @author: zhangcx
  * @date: 2019/8/6 10:33
  */
-public class CommonConstants {
+public abstract class CommonConstants {
     /** 常用编码，utf-8 */
     public static final String ENCODING = "UTF-8";
     /** 默认的http协议 */
