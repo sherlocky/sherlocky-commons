@@ -15,14 +15,18 @@
 */
 package com.sherlocky.common.constant;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 /**
  * 常用的一些常量
  * @author: zhangcx
  * @date: 2019/8/6 10:33
  */
 public abstract class CommonConstants {
-    /** 常用编码，utf-8 */
-    public static final String ENCODING = "UTF-8";
+    /** 默认字符集，utf-8 */
+    public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+    public static final String DEFAULT_CHARSET_NAME = DEFAULT_CHARSET.name();
     /** 默认的http协议 */
     public static final String DEFAULT_SCHEMA = "http";
     /** http协议分隔符 */

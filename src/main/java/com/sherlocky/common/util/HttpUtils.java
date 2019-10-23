@@ -32,10 +32,11 @@ import org.apache.http.util.EntityUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Map;
 
-import static com.sherlocky.common.constant.CommonConstants.ENCODING;
+import static com.sherlocky.common.constant.CommonConstants.DEFAULT_CHARSET_NAME;
 
 /**
  * http相关简单工具集
@@ -65,14 +66,14 @@ public final class HttpUtils {
         try {
             // 微软系浏览器
             if (StringUtils.containsAny(agent, "MSIE", "Trident", "Edge")) {
-                return URLEncoder.encode(fileName, ENCODING).replace("+", "%20");
+                return URLEncoder.encode(fileName, DEFAULT_CHARSET_NAME).replace("+", "%20");
             }
             if (agent.contains("Safari")) {
-                return new String(fileName.getBytes(ENCODING), "ISO8859-1");
+                return new String(fileName.getBytes(DEFAULT_CHARSET_NAME), StandardCharsets.ISO_8859_1);
             }
             if (agent.contains("Mozilla")) {
                 // 此处使用Java8 原生的 Base64 类
-                return "=?UTF-8?B?" + (new String(Base64.getEncoder().encodeToString(fileName.getBytes(ENCODING)))) + "?=";
+                return "=?UTF-8?B?" + (new String(Base64.getEncoder().encodeToString(fileName.getBytes(DEFAULT_CHARSET_NAME)))) + "?=";
             }
         } catch (UnsupportedEncodingException ex) {
             log.error("$$$$$$ 转换文件名编码失败！", ex);

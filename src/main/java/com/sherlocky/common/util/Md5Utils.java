@@ -128,10 +128,10 @@ public final class Md5Utils {
         KeyGenerator keyGen = null;
         Mac mac = null;
         try {
-            SecretKey secretKey = new SecretKeySpec(macKey.getBytes(CommonConstants.ENCODING), ALGORITHM_MAC);
+            SecretKey secretKey = new SecretKeySpec(macKey.getBytes(CommonConstants.DEFAULT_CHARSET_NAME), ALGORITHM_MAC);
             mac = Mac.getInstance(ALGORITHM_MAC);
             mac.init(secretKey);
-            mac.update(source.getBytes(CommonConstants.ENCODING));
+            mac.update(source.getBytes(CommonConstants.DEFAULT_CHARSET_NAME));
             // 转成16进制
             return Hex.encodeHexString(mac.doFinal());
         } catch (NoSuchAlgorithmException e) {

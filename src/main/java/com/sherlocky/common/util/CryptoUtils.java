@@ -63,7 +63,7 @@ public final class CryptoUtils {
      * @return a {@link String} object.
      */
     public static String encodeSHA512(final String str) {
-        return encodeSHA512(str, CommonConstants.ENCODING);
+        return encodeSHA512(str, CommonConstants.DEFAULT_CHARSET_NAME);
     }
 
     /**
@@ -101,7 +101,7 @@ public final class CryptoUtils {
      * @return a {@link String} object.
      */
     public static String encodeBase64(final String str) {
-        return encodeBase64(str, CommonConstants.ENCODING);
+        return encodeBase64(str, CommonConstants.DEFAULT_CHARSET_NAME);
     }
 
     /**
@@ -111,7 +111,7 @@ public final class CryptoUtils {
      * @return a {@link String} object.
      */
     public static String decodeBase64(String str) {
-        return decodeBase64(str, CommonConstants.ENCODING);
+        return decodeBase64(str, CommonConstants.DEFAULT_CHARSET_NAME);
     }
 
     /**
@@ -175,7 +175,7 @@ public final class CryptoUtils {
      * @return 校验码（字符串）
      */
     public static String crc32(String str) {
-        return crc32(str, CommonConstants.ENCODING);
+        return crc32(str, CommonConstants.DEFAULT_CHARSET_NAME);
     }
 
     /**
