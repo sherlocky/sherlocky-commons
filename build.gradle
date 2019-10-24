@@ -135,7 +135,7 @@ publishing {
                 password oss_sonatype_maven_password
             }
         }
-        /** oss snapshot 仓库，必须携带 -SNAPSHOT 后缀
+        // oss snapshot 仓库，版本必须携带 -SNAPSHOT 后缀
         maven {
             name = 'oss-snapshot'
             url = oss_sonatype_snapshot_maven_url
@@ -144,7 +144,6 @@ publishing {
                 password = oss_sonatype_maven_password
             }
         }
-        */
     }
 
     /** 发布到自建maven仓库，无需签名
