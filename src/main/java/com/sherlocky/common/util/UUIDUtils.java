@@ -6,6 +6,7 @@ import java.util.UUID;
 
 /**
  * UUID 工具类
+ * @since 0.0.7
  */
 public final class UUIDUtils {
 

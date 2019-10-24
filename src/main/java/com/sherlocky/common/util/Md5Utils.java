@@ -21,11 +21,9 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Md5 工具类
  * need  commons-codec-1.6.jar +
- *
- * TODO utf常量引用修改
- *
  * @author zhangcx
  * @date 2019-8-4
+ * @since 0.0.4
  */
 @Slf4j
 public final class Md5Utils {

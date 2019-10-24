@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * XSS 工具类
+ * @since 0.0.7
  */
 public final class XssUtils {
     private static final String STR_SCRIPT1 = "<script>(.*?)</script>";

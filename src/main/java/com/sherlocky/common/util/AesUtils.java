@@ -18,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
  * <p>密钥长度必须为16个字节(128位)，初始向量长度必须为16个字节</p>
  *
  * @author
+ * @since 0.1.0
  */
 @Slf4j
 public final class AesUtils {

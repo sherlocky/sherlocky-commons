@@ -11,6 +11,7 @@ import java.util.zip.CheckedInputStream;
 
 /**
  * 加密工具类，包含BASE64,SHA,CRC32
+ * @since 0.0.5
  */
 @Slf4j
 public final class CryptoUtils {
@@ -118,6 +119,7 @@ public final class CryptoUtils {
      *
      * @param str a {@link String} object.
      * @return a {@link String} object.
+     * @since 0.1.0
      */
     public static String decodeBase64(String str) {
         return decodeBase64(str, CommonConstants.DEFAULT_CHARSET_NAME);

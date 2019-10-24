@@ -129,6 +129,7 @@ public final class HttpUtils {
      * @param downloadUrl 下载地址
      * @param destFilePath 文件下载目标路径
      * @return
+     * @since 0.0.6
      */
     public static boolean downloadFile(String downloadUrl, String destFilePath) {
         return HttpUtils.downloadFile(downloadUrl, null, destFilePath, false);
@@ -141,6 +142,7 @@ public final class HttpUtils {
      * @param destFilePath 文件下载目标路径
      * @param forceDeleteOnExit
      * @return
+     * @since 0.0.6
      */
     public static boolean downloadFile(String downloadUrl, Map<String, String> httpHeaders, String destFilePath, boolean forceDeleteOnExit) {
         Asserts.notNull(downloadUrl, "$$$ downloadUrl 不能为 null！");

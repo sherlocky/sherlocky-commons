@@ -5,6 +5,7 @@ package com.sherlocky.common.exception;
  * <p>
  * 继承自RuntimeException
  * </p>
+ * @since 0.0.7
  */
 public class BaseException extends RuntimeException {
     public BaseException() {
