@@ -20,7 +20,21 @@ Sherlcok 自用公共基础包
 </dependency>
 ```
 
+snapshot 版：
+```xml
+<dependency>
+  <groupId>com.sherlocky</groupId>
+  <artifactId>sherlocky-commons</artifactId>
+  <version>0.2.0-SNAPSHOT</version>
+</dependency>
+```
+
 ##### gradle
 ```groovy
 implementation 'com.sherlocky:sherlocky-commons:0.1.0'
+```
+
+snapshot 版：
+```groovy
+implementation 'com.sherlocky:sherlocky-commons:0.2.0-SNAPSHOT'
 ```
