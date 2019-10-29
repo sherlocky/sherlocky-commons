@@ -20,4 +20,17 @@ public class IpUtilsTest {
     public void testIsNotInternal() {
         Assert.assertFalse(IpUtils.isInternal("114.114.114.114"));
     }
+
+    @Test
+    public void testIsIpv4() {
+        Assert.assertTrue(IpUtils.isIpv4("114.114.114.114"));
+    }
+
+    @Test
+    public void testIsIpv6() {
+        Assert.assertTrue(IpUtils.isIpv6("CDCD:910A:2222:5498:8475:1111:3900:2020"));
+        Assert.assertTrue(IpUtils.isIpv6("1030::C9B4:FF12:48AA:1A2B"));
+        Assert.assertTrue(IpUtils.isIpv6("2000:0:0:0:0:0:0:1"));
+        Assert.assertTrue(IpUtils.isIpv6("2001:DB8:2de::e13"));
+    }
 }
