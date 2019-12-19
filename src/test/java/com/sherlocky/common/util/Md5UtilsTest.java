@@ -23,8 +23,9 @@ public class Md5UtilsTest {
 
     @Test
     public void testFileMd5() {
+        System.out.println(System.getProperty("user.dir"));
         String md5 = "b733d393dea6ef03994a875106d45656";
-        File f = new File("E:\\IDEAProjects\\sherlocky-commons\\logo.png");
+        File f = new File(System.getProperty("user.dir") + "/logo.png");
         String fileMd5 = Md5Utils.getFileMd5(f);
         Assert.assertEquals(md5, fileMd5);
     }

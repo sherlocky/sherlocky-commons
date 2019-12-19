@@ -42,7 +42,7 @@ public class CryptoUtilsTest {
 
     @Test
     public void testCrc32() {
-        File f = new File("E:\\IDEAProjects\\sherlocky-commons\\logo.png");
+        File f = new File(System.getProperty("user.dir") + "/logo.png");
         String crc32 = "34b09a19";
         String fileSrc32 = CryptoUtils.crc32(f);
         System.out.println(fileSrc32);
