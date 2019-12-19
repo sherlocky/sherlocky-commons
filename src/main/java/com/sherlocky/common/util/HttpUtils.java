@@ -77,9 +77,8 @@ public final class HttpUtils {
             }
         } catch (UnsupportedEncodingException ex) {
             log.error("$$$$$$ 转换文件名编码失败！", ex);
-        } finally {
-            return fileName;
         }
+        return fileName;
     }
 
     /**
@@ -219,8 +218,20 @@ public final class HttpUtils {
                 } catch (IOException e) {
                     log.error("$$$ 下载文件流出错！", e);
                 } finally {
-                    IOUtils.closeQuietly(out);
-                    IOUtils.closeQuietly(in);
+                    try {
+                        if (out != null) {
+                            out.close();
+                        }
+                    } catch (final IOException ioe) {
+                        // ignore
+                    }
+                    try {
+                        if (in != null) {
+                            in.close();
+                        }
+                    } catch (final IOException ioe) {
+                        // ignore
+                    }
                 }
             }
             if (log.isInfoEnabled()) {
@@ -229,8 +240,20 @@ public final class HttpUtils {
         } catch (IOException e) {
             log.error(String.format("$$$ 请求文件下载失败，下载地址 -> %s 路径：%s", downloadUrl, destFile.getAbsolutePath()), e);
         } finally {
-            IOUtils.closeQuietly(response);
-            IOUtils.closeQuietly(httpClient);
+            try {
+                if (response != null) {
+                    response.close();
+                }
+            } catch (final IOException ioe) {
+                // ignore
+            }
+            try {
+                if (httpClient != null) {
+                    httpClient.close();
+                }
+            } catch (final IOException ioe) {
+                // ignore
+            }
         }
         if (log.isDebugEnabled()) {
             log.debug("@@@@@@ 下载完成。");
