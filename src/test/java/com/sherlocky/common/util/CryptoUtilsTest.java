@@ -1,5 +1,6 @@
 package com.sherlocky.common.util;
 
+import com.sherlocky.common.constant.CommonConstants;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,9 +32,12 @@ public class CryptoUtilsTest {
         Assert.assertEquals(srcSHA512, sha512);
 
         String sha1 = "50dd851077968cfad9e502939d926301f26ca2c2";
-        String srcSHA1 = CryptoUtils.encodeSHA1(src.getBytes());
+        String srcSHA1 = CryptoUtils.encodeSHA1(src);
+        String _srcSHA1 = CryptoUtils.encodeSHA1(src.getBytes(CommonConstants.DEFAULT_CHARSET));
         System.out.println(srcSHA1);
         Assert.assertEquals(srcSHA1, sha1);
+        System.out.println(_srcSHA1);
+        Assert.assertEquals(_srcSHA1, sha1);
     }
 
     @Test

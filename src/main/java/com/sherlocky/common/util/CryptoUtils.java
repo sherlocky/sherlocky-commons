@@ -29,6 +29,35 @@ public final class CryptoUtils {
     }
 
     /**
+     * 字符串 SHA1 散列（支持中文）
+     *
+     * @param str     a {@link String} object.
+     * @param charset a {@link String} object.
+     * @return a {@link String} object.
+     */
+    public static String encodeSHA1(final String str, final String charset) {
+        if (str == null) {
+            return null;
+        }
+        try {
+            byte[] bytes = str.getBytes(charset);
+            return encodeSHA1(bytes);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 字符串 SHA1 散列（支持中文）,默认编码 utf-8
+     *
+     * @param str a {@link String} object.
+     * @return a {@link String} object.
+     */
+    public static String encodeSHA1(final String str) {
+        return encodeSHA1(str, CommonConstants.DEFAULT_CHARSET_NAME);
+    }
+
+    /**
      * SHA512 散列
      *
      * @param bytes an array of byte.
@@ -39,7 +68,7 @@ public final class CryptoUtils {
     }
 
     /**
-     * SHA512 散列
+     * 字符串 SHA512 散列（支持中文）
      *
      * @param str     a {@link String} object.
      * @param charset a {@link String} object.
@@ -58,7 +87,7 @@ public final class CryptoUtils {
     }
 
     /**
-     * SHA512 散列,默认编码 utf-8
+     * 字符串 SHA512 散列（支持中文）,默认编码 utf-8
      *
      * @param str a {@link String} object.
      * @return a {@link String} object.
