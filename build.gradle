@@ -15,6 +15,9 @@ targetCompatibility = 1.8
 
 repositories {
     maven {
+        url huawei_cloud_maven_url
+    }
+    maven {
         url maven_url
     }
 }
@@ -33,7 +36,8 @@ dependencies {
     // javax.annotation.Nullable
     api 'com.google.code.findbugs:jsr305:3.0.2'
 
-    //api 'cn.hutool:hutool-all:5.0.2'
+    //api 'cn.hutool:hutool-all:5.1.0'
+    api 'cn.hutool:hutool-http:5.1.0'
 
     // logback日志实现，使用 implementation 不把依赖传递给使用者
     implementation 'ch.qos.logback:logback-classic:1.2.3'
