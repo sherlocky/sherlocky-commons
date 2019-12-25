@@ -3,7 +3,7 @@
 ![sherlocky](logo.png "sherlocky")
 
 #### 简介
-Sherlcok 自用公共基础包
+Sherlock 自用公共基础包
 
 #### 软件架构
 基于 JDK 8 + Gradle 4.10.2 构建
