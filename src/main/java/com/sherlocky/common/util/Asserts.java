@@ -18,7 +18,9 @@ import java.util.Objects;
  * @since 0.0.6
  */
 public final class Asserts {
-    // 防止实例化
+    /**
+     * 防止实例化
+     */
     private Asserts() {
     }
 
