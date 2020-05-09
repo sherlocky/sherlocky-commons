@@ -1,6 +1,5 @@
 package com.sherlocky.common.util;
-import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSON;
+
 import com.sherlocky.common.constant.MessagePushConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,14 +42,15 @@ public final class MessagePushUtils {
     public static boolean push(String sckey, String title, String content) {
         Asserts.notNull(sckey, "消息服务sckey 不能为空！");
         Asserts.notNull(title, "消息标题 不能为空！");
-        Map<String, Object> msgData = new HashMap<>();
+        Map<String, String> msgData = new HashMap<>();
         msgData.put(MessagePushConstants.SERVER_CHAN_PARAM_TITLE, title);
         if (StringUtils.isNotEmpty(content)) {
             msgData.put(MessagePushConstants.SERVER_CHAN_PARAM_CONTENT, content);
         }
         String result = null;
         try {
-            result = HttpUtil.get(String.format(MessagePushConstants.SERVER_CHAN_URL, sckey), msgData, MessagePushConstants.PUSH_TIME_OUT);
+            //result = HttpUtil.get(String.format(MessagePushConstants.SERVER_CHAN_URL, sckey), msgData, MessagePushConstants.PUSH_TIME_OUT);
+            result = HttpClientUtils.get(String.format(MessagePushConstants.SERVER_CHAN_URL, sckey), msgData, MessagePushConstants.PUSH_TIME_OUT);
             if (log.isDebugEnabled()) {
                 log.debug(result);
             }
@@ -59,7 +59,7 @@ public final class MessagePushUtils {
         }
         MessagePushResponse mpr = null;
         try {
-            mpr = JSON.parseObject(result, MessagePushResponse.class);
+            mpr = JsonUtils.parseObject(result, MessagePushResponse.class);
         } catch (Exception e) {
             log.error("$$$ 解析推送服务返回值失败~", e);
         }

@@ -1,6 +1,6 @@
 package com.sherlocky.common;
 
-import com.alibaba.fastjson.JSON;
+import com.sherlocky.common.util.JsonUtils;
 
 /**
  * Base 单元测试类，便于单元测试时打印一些参数
@@ -35,10 +35,10 @@ public class BaseTest {
                 println(obj);
                 return;
             }
-            println(JSON.toJSONString(JSON.parseObject((String) obj), true));
+            println(JsonUtils.toJSONString(JsonUtils.parseObject((String) obj)));
             return;
         }
-        println(JSON.toJSONString(obj, prettyFormat));
+        println(JsonUtils.toJSONString(obj, prettyFormat));
     }
 
     /**

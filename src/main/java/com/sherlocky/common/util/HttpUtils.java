@@ -22,12 +22,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -235,7 +235,7 @@ public final class HttpUtils {
                 }
             }
             if (log.isInfoEnabled()) {
-                log.info("### 状态码：{}", response.getStatusLine().getStatusCode());
+                log.info("### 状态码：{}", response.getCode());
             }
         } catch (IOException e) {
             log.error(String.format("$$$ 请求文件下载失败，下载地址 -> %s 路径：%s", downloadUrl, destFile.getAbsolutePath()), e);
