@@ -1,8 +1,9 @@
 package com.sherlocky.common.util;
 
 import com.sherlocky.common.constant.CommonConstants;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Base64;
@@ -13,8 +14,8 @@ import java.util.zip.CheckedInputStream;
  * 加密工具类，包含BASE64,SHA,CRC32
  * @since 0.0.5
  */
-@Slf4j
 public final class CryptoUtils {
+    private static final Logger log = LoggerFactory.getLogger(CryptoUtils.class);
 
     private CryptoUtils() {}
 

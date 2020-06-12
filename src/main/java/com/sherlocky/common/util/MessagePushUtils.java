@@ -1,10 +1,9 @@
 package com.sherlocky.common.util;
 
 import com.sherlocky.common.constant.MessagePushConstants;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,20 +11,24 @@ import java.util.Map;
 /**
  * 消息推送 工具
  * <p>
- *     base on <a href="http://sc.ftqq.com/">Server酱「ServerChan」</a>，使用时需要自行申请``SCKEY``。
+ * base on <a href="http://sc.ftqq.com/">Server酱「ServerChan」</a>，使用时需要自行申请``SCKEY``。
  * </p>
+ *
  * @author: zhangcx
  * @date: 2019/12/25 17:38
  * @since:
  */
-@Slf4j
 public final class MessagePushUtils {
+    private static final Logger log = LoggerFactory.getLogger(MessagePushUtils.class);
+
     /*private final String SCKEY;
     private final String pushServerUrl;*/
-    private MessagePushUtils() {}
+    private MessagePushUtils() {
+    }
 
     /**
      * 推送消息
+     *
      * @param title 标题【必填】
      * @return
      */
@@ -35,7 +38,8 @@ public final class MessagePushUtils {
 
     /**
      * 推送消息
-     * @param title 标题【必填，最长256】
+     *
+     * @param title   标题【必填，最长256】
      * @param content 内容【选填，最长64K，支持markdown】
      * @return
      */
@@ -49,7 +53,7 @@ public final class MessagePushUtils {
         }
         String result = null;
         try {
-            //result = HttpUtil.get(String.format(MessagePushConstants.SERVER_CHAN_URL, sckey), msgData, MessagePushConstants.PUSH_TIME_OUT);
+            // result = HttpUtil.get(String.format(MessagePushConstants.SERVER_CHAN_URL, sckey), msgData, MessagePushConstants.PUSH_TIME_OUT);
             result = HttpClientUtils.get(String.format(MessagePushConstants.SERVER_CHAN_URL, sckey), msgData, MessagePushConstants.PUSH_TIME_OUT);
             if (log.isDebugEnabled()) {
                 log.debug(result);
@@ -70,13 +74,82 @@ public final class MessagePushUtils {
     }
 }
 
-@Data
-@NoArgsConstructor
 class MessagePushResponse {
-    // 0
+    /**
+     * 0
+     */
     private int errno;
-    // "success"
+    /**
+     * "success"
+     */
     private String errmsg;
-    // "done"
+    /**
+     * "done"
+     */
     private String dataset;
+
+    public int getErrno() {
+        return this.errno;
+    }
+
+    public String getErrmsg() {
+        return this.errmsg;
+    }
+
+    public String getDataset() {
+        return this.dataset;
+    }
+
+    public void setErrno(final int errno) {
+        this.errno = errno;
+    }
+
+    public void setErrmsg(final String errmsg) {
+        this.errmsg = errmsg;
+    }
+
+    public void setDataset(final String dataset) {
+        this.dataset = dataset;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof MessagePushResponse)) {
+            return false;
+        }
+        final MessagePushResponse other = (MessagePushResponse) o;
+        if (this.getErrno() != other.getErrno()) {
+            return false;
+        }
+        if (this.getErrmsg() == null ? other.getErrmsg() != null : !this.getErrmsg().equals(other.getErrmsg())) {
+            return false;
+        }
+        if (this.getDataset() == null ? other.getDataset() != null : !this.getDataset().equals(other.getDataset())) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        result = result * PRIME + this.getErrno();
+        final Object $errmsg = this.getErrmsg();
+        result = result * PRIME + ($errmsg == null ? 43 : $errmsg.hashCode());
+        final Object $dataset = this.getDataset();
+        result = result * PRIME + ($dataset == null ? 43 : $dataset.hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MessagePushResponse(errno=" + this.getErrno() + ", errmsg=" + this.getErrmsg() + ", dataset=" + this.getDataset() + ")";
+    }
+
+    public MessagePushResponse() {
+    }
 }

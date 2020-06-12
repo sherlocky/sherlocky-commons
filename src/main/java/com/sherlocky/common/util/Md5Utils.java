@@ -1,10 +1,11 @@
 package com.sherlocky.common.util;
 
 import com.sherlocky.common.constant.CommonConstants;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
@@ -25,9 +26,11 @@ import java.security.NoSuchAlgorithmException;
  * @date 2019-8-4
  * @since 0.0.4
  */
-@Slf4j
 public final class Md5Utils {
-    /** HmacMD5 加密算法 */
+    private static final Logger log = LoggerFactory.getLogger(Md5Utils.class);
+    /**
+     * HmacMD5 加密算法
+     */
     private static final String ALGORITHM_MAC = "HmacMD5";
     private static MessageDigest MD5 = null;
 

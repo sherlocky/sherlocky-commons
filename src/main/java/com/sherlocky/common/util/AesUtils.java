@@ -1,8 +1,8 @@
 package com.sherlocky.common.util;
 
-
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -20,9 +20,11 @@ import java.security.NoSuchAlgorithmException;
  * @author
  * @since 0.1.0
  */
-@Slf4j
 public final class AesUtils {
-    /** AES 算法 */
+    private static final Logger log = LoggerFactory.getLogger(AesUtils.class);
+    /**
+     * AES 算法
+     */
     private static final String AES_ALGORITHM = "AES";
     /**
      * 加密算法/加密模式/填充类型（AES_CBC_PKCS5Padding）

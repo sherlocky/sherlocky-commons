@@ -6,7 +6,7 @@
 Sherlock 自用公共基础包
 
 #### 软件架构
-基于 JDK 8 + Gradle 4.10.2 构建
+基于 JDK 8 + Gradle 5.2.1 构建
 
 #### 安装
 已发布到Maven Central，[maven 地址](https://mvnrepository.com/artifact/com.sherlocky/sherlocky-commons)
