@@ -36,5 +36,5 @@ implementation 'com.sherlocky:sherlocky-commons:0.2.0'
 
 snapshot 版：
 ```groovy
-implementation 'com.sherlocky:sherlocky-commons:0.2.0-SNAPSHOT'
+implementation 'com.sherlocky:sherlocky-commons:0.3.0-SNAPSHOT'
 ```
