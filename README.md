@@ -16,7 +16,7 @@ Sherlock 自用公共基础包
 <dependency>
   <groupId>com.sherlocky</groupId>
   <artifactId>sherlocky-commons</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
@@ -25,13 +25,13 @@ snapshot 版：
 <dependency>
   <groupId>com.sherlocky</groupId>
   <artifactId>sherlocky-commons</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.3.0-SNAPSHOT</version>
 </dependency>
 ```
 
 ##### gradle
 ```groovy
-implementation 'com.sherlocky:sherlocky-commons:0.1.0'
+implementation 'com.sherlocky:sherlocky-commons:0.2.0'
 ```
 
 snapshot 版：
