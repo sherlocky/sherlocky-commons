@@ -14,11 +14,16 @@ public final class UUIDUtils {
     }
 
     public static String get() {
-        return StringUtils.replace(UUID.randomUUID().toString(), "-", "");
+        return UUIDUtils.get(true);
+    }
+    
+    public static String get(boolean isSimple) {
+        String uuid = UUID.randomUUID().toString();
+        return isSimple ? StringUtils.replace(uuid, "-", "") : uuid;
     }
 
     public static void main(String[] args) {
         System.out.println(UUIDUtils.get());
-        System.out.println(UUIDUtils.get());
+        System.out.println(UUIDUtils.get(false));
     }
 }
