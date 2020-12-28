@@ -1,7 +1,7 @@
 # sherlocky-commons
-[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
-![version](https://img.shields.io/badge/version-0.2.0-blue)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+![version](https://img.shields.io/badge/version-0.2.0-blue)
+![workflows](https://github.com/sherlocky/sherlocky-commons/workflows/.github/workflows/gradle.yml/badge.svg)
 
 ![sherlocky](logo.png "sherlocky")
 
