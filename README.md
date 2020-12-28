@@ -6,7 +6,7 @@
 ![sherlocky](logo.png "sherlocky")
 
 #### 感谢 JetBrains 提供开源许可证支持
-[![JetBrains](JetBrains.png)](https://www.jetbrains.com/?from=sherlocky-commons)
+[![JetBrains](jetbrains-variant-4.svg)](https://www.jetbrains.com/?from=sherlocky-commons)
 
 #### 简介
 Sherlock 自用公共基础包
