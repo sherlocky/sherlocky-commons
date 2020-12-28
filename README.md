@@ -1,7 +1,7 @@
 # sherlocky-commons
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 ![version](https://img.shields.io/badge/version-0.2.0-blue)
-![workflows](https://github.com/sherlocky/sherlocky-commons/workflows/.github/workflows/gradle.yml/badge.svg)
+![workflows](https://github.com/sherlocky/sherlocky-commons/workflows/Java%20CI/badge.svg)
 
 ![sherlocky](logo.png "sherlocky")
 
