@@ -1,7 +1,7 @@
 # sherlocky-commons
-[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-![version](https://img.shields.io/badge/version-0.2.0-blue)
-![workflows](https://github.com/sherlocky/sherlocky-commons/workflows/Java%20CI/badge.svg)
+[![Build Status](https://github.com/sherlocky/sherlocky-commons/workflows/Java%20CI/badge.svg)](https://github.com/sherlocky/sherlocky-commons/actions)
+[![license](https://img.shields.io/github/license/sherlocky/sherlocky-commons.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![maven](https://img.shields.io/maven-central/v/com.sherlocky/sherlocky-commons.svg)](https://search.maven.org/search?q=com.sherlocky)
 
 ![sherlocky](logo.png "sherlocky")
 
