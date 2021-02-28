@@ -5,5 +5,8 @@ package com.sherlocky.common.constant;
  */
 public interface StrPool {
 
-
+    /**
+     * 默认编码
+     */
+    String UTF8 = "UTF-8";
 }
