@@ -9,4 +9,11 @@ public interface StrPool {
      * 默认编码
      */
     String UTF8 = "UTF-8";
+
+    /**
+     * RESTful JSON 资源 contentType
+     */
+    String CONTENT_TYPE = "application/json; charset=utf-8";
+
 }
+
