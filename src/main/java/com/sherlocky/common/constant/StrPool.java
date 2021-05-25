@@ -9,6 +9,12 @@ public interface StrPool {
      * 默认编码
      */
     String UTF8 = "UTF-8";
+    /**
+     * 其他编码
+     */
+    String GBK = "GBK";
+    String US_ASCII = "US-ASCII";
+    String ISO_8859_1 = "ISO-8859-1";
 
     /**
      * RESTful JSON 资源 contentType
