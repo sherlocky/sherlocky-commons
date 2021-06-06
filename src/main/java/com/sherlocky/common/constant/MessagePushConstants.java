@@ -7,13 +7,13 @@ package com.sherlocky.common.constant;
  */
 public class MessagePushConstants {
     /**
-     * Server酱 发送消息接口地址
+     * Server酱 发送消息接口地址，微信通道即将关闭，切换成 Turbo 版本
      */
-    public static final String SERVER_CHAN_URL = "https://sc.ftqq.com/%s.send";
+    public static final String SERVER_CHAN_URL = "https://sctapi.ftqq.com/%s.send";
     /**
      * Server酱 发送消息 标题
      */
-    public static final String SERVER_CHAN_PARAM_TITLE = "text";
+    public static final String SERVER_CHAN_PARAM_TITLE = "title";
     /**
      * Server酱 发送消息 内容
      */

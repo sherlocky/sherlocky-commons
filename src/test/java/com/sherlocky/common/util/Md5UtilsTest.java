@@ -1,9 +1,12 @@
 package com.sherlocky.common.util;
 
+import com.google.common.collect.Sets;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.Set;
 
 /**
  * md5工具类测试
@@ -11,6 +14,23 @@ import java.io.File;
  * @date: 2019/8/15 15:37
  */
 public class Md5UtilsTest {
+
+    @Test
+    public void testFileMd50() {
+        File desktop = new File("D:\\Sherlocky\\Desktop\\55\\");
+        File baitian = new File("E:\\SynologyDrive\\life\\图片\\米乐\\米乐-百天照-20200727\\");
+        Set<String> md5s = Sets.newHashSet();
+        Arrays.stream(baitian.listFiles()).forEach(ff -> {
+            md5s.add(Md5Utils.getFileMd5(ff));
+        });
+
+        Arrays.stream(desktop.listFiles(ff -> ff.isFile())).forEach(ff -> {
+            String md5 = Md5Utils.getFileMd5(ff);
+            if (!md5s.contains(md5)) {
+                System.out.println(ff.getName());
+            }
+        });
+    }
 
     @Test
     public void testStrMd5() {
