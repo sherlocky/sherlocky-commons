@@ -39,5 +39,12 @@ public interface StrPool {
     String LOCAL_DATE_TYPE_NAME = "java.time.LocalDate";
     String LOCAL_TIME_TYPE_NAME = "java.time.LocalTime";
 
+    /**
+     * 占位符
+     */
+    String DOLLAR_LEFT_BRACE = "${";
+    String HASH_LEFT_BRACE = "#{";
+    String RIGHT_BRACE = "}";
+
 }
 
