@@ -31,7 +31,7 @@ snapshot 版：
 <dependency>
   <groupId>com.sherlocky</groupId>
   <artifactId>sherlocky-commons</artifactId>
-  <version>0.3.0-SNAPSHOT</version>
+  <version>0.4.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -42,5 +42,8 @@ implementation 'com.sherlocky:sherlocky-commons:0.2.0'
 
 snapshot 版：
 ```groovy
-implementation 'com.sherlocky:sherlocky-commons:0.3.0-SNAPSHOT'
+implementation 'com.sherlocky:sherlocky-commons:0.4.0-SNAPSHOT'
 ```
+
+> snapshot版需要配置仓库源：
+> https://oss.sonatype.org/content/repositories/snapshots/
