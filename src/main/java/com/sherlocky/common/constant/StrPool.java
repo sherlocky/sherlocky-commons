@@ -46,5 +46,14 @@ public interface StrPool {
     String HASH_LEFT_BRACE = "#{";
     String RIGHT_BRACE = "}";
 
+    /**
+     * 常见后缀
+     */
+    String DOT = ".";
+    String DOTDOT = "..";
+    String DOT_CLASS = ".class";
+    String DOT_JAVA = ".java";
+    String DOT_XML = ".xml";
+
 }
 
