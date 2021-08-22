@@ -55,5 +55,18 @@ public interface StrPool {
     String DOT_JAVA = ".java";
     String DOT_XML = ".xml";
 
+    /**
+     * 常用分隔符
+     */
+    String AMPERSAND = "&";
+    String AND = "and";
+    String AT = "@";
+    String ASTERISK = "*";
+    String STAR = "*";
+    String BACK_SLASH = "\\";
+    String COLON = ":";
+    String COMMA = ",";
+    String DASH = "-";
+    String DOLLAR = "$";
 }
 
