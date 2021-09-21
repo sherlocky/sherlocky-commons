@@ -68,5 +68,16 @@ public interface StrPool {
     String COMMA = ",";
     String DASH = "-";
     String DOLLAR = "$";
+
+    /**
+     * 空白
+     */
+    String EMPTY = "";
+    String SPACE = " ";
+    String RETURN = "\r";
+    String TAB = "\t";
+    String NEWLINE = "\n";
+    String CRLF = "\r\n";
+
 }
 
