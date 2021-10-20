@@ -79,5 +79,14 @@ public interface StrPool {
     String NEWLINE = "\n";
     String CRLF = "\r\n";
 
+    /**
+     * HTML相关
+     */
+    String HTML_NBSP = "&nbsp;";
+    String HTML_AMP = "&amp";
+    String HTML_QUOTE = "&quot;";
+    String HTML_LT = "&lt;";
+    String HTML_GT = "&gt;";
+
 }
 
