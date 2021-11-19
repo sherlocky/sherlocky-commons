@@ -46,6 +46,19 @@ public interface StrPool {
     String HASH_LEFT_BRACE = "#{";
     String RIGHT_BRACE = "}";
 
+    String LEFT_BRACE = "{";
+    String BRACE = "{}";
+    String LEFT_BRACKET = "(";
+    String LEFT_CHEV = "<";
+    String RIGHT_BRACKET = ")";
+    String RIGHT_CHEV = ">";
+    String SEMICOLON = ";";
+    String SINGLE_QUOTE = "'";
+    String BACKTICK = "`";
+    String TILDA = "~";
+    String LEFT_SQ_BRACKET = "[";
+    String RIGHT_SQ_BRACKET = "]";
+
     /**
      * 常见后缀
      */
