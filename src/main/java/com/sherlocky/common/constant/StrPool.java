@@ -81,6 +81,9 @@ public interface StrPool {
     String COMMA = ",";
     String DASH = "-";
     String DOLLAR = "$";
+    String SLASH = "/";
+    String HASH = "#";
+    String HAT = "^";
 
     /**
      * 空白
