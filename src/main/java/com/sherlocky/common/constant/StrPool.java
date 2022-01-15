@@ -84,6 +84,8 @@ public interface StrPool {
     String SLASH = "/";
     String HASH = "#";
     String HAT = "^";
+    String PIPE = "|";
+    String UNDERSCORE = "_";
 
     /**
      * 空白
