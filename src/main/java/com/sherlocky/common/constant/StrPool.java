@@ -2,6 +2,7 @@ package com.sherlocky.common.constant;
 
 /**
  * 常用字符串
+ * @since 0.6.0
  */
 public interface StrPool {
 
