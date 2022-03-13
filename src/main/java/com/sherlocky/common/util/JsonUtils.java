@@ -3,6 +3,7 @@ package com.sherlocky.common.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -243,7 +244,7 @@ public final class JsonUtils {
         //识别单引号
         OBJECT_MAPPER.enable(JsonParser.Feature.ALLOW_SINGLE_QUOTES);
         //识别特殊字符
-        OBJECT_MAPPER.enable(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS);
+        OBJECT_MAPPER.enable(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature());
         // 允许属性名称没有引号
         OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 
@@ -251,7 +252,7 @@ public final class JsonUtils {
         OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
 
         // 允许稀疏数组
-        OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_MISSING_VALUES, true);
+        OBJECT_MAPPER.configure(JsonReadFeature.ALLOW_MISSING_VALUES.mappedFeature(), true);
 
         // 使用枚举的name()值作为序列化方式
         OBJECT_MAPPER.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
