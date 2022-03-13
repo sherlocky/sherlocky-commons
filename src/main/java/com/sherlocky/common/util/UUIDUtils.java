@@ -22,8 +22,8 @@ public final class UUIDUtils {
         return isSimple ? StringUtils.replace(uuid, "-", "") : uuid;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         System.out.println(UUIDUtils.get());
         System.out.println(UUIDUtils.get(false));
-    }
+    }*/
 }
