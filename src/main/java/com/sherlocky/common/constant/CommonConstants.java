@@ -31,4 +31,10 @@ public abstract class CommonConstants {
     public static final String DEFAULT_SCHEMA = "http";
     /** http协议分隔符 */
     public static final String SCHEMA_SEPARATOR = "://";
+
+    // http 协议头前缀
+    public static final String HTTP_SCHEMA_PREFIX = "http://";
+
+    // https 协议头前缀
+    public static final String HTTPS_SCHEMA_PREFIX = "https://";
 }
