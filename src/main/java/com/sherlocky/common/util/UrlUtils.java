@@ -6,16 +6,12 @@ import static com.sherlocky.common.constant.CommonConstants.HTTPS_SCHEMA_PREFIX;
 import static com.sherlocky.common.constant.CommonConstants.HTTP_SCHEMA_PREFIX;
 
 /**
- * @author zhangxu
- * @date 2022/3/20
+ * URL工具类
+ * @date 2022/4/3
  */
 public final class UrlUtils {
 
     private UrlUtils() {}
-
-    public static void main(String[] args) {
-        System.out.println(UrlUtils.getRelativePathFromUrl("https://sherlocky.github.com/2022/03/30/index.html"));
-    }
 
     /**
      * <p>获取URL中相对于域名的绝对地址</p>
