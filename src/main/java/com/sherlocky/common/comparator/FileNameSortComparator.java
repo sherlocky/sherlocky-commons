@@ -13,6 +13,12 @@ public class FileNameSortComparator implements Comparator<String> {
         return new FileNameSortComparator();
     }
 
+    /**
+     * 文件名排序(类windows效果)
+     * @param x the first object to be compared.
+     * @param y the second object to be compared.
+     * @return
+     */
     @Override
     public int compare(String x, String y) {
         char[] arr1 = x.toCharArray();
@@ -31,12 +37,18 @@ public class FileNameSortComparator implements Comparator<String> {
                     s2.append(arr2[j]);
                     j++;
                 }
-                //TODO 有点bug，数字位可能会超长
-                if (Integer.parseInt(s1.toString()) > Integer.parseInt(s2.toString())) {
-                    return 1;
-                }
-                if (Integer.parseInt(s1.toString()) < Integer.parseInt(s2.toString())) {
-                    return -1;
+                // 判断字符串是否超出Long的范围 如果超出则当字符比较处理
+                try {
+                    long l1 = Long.parseLong(s1.toString());
+                    long l2 = Long.parseLong(s2.toString());
+                    if (l1 > l2) {
+                        return 1;
+                    }
+                    if (l1 < l2) {
+                        return -1;
+                    }
+                } catch (Exception e) {
+                    return s1.toString().compareTo(s2.toString());
                 }
             } else {
                 if (arr1[i] > arr2[j]) {
