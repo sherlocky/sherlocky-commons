@@ -37,4 +37,15 @@ public abstract class CommonConstants {
 
     // https 协议头前缀
     public static final String HTTPS_SCHEMA_PREFIX = "https://";
+
+    /**
+     * 成功时返回 1
+     */
+    public static final String SUCCESS_CODE = "1";
+    /**
+     * 失败返回 -1
+     */
+    public static final String ERROR_CODE = "-1";
+
+    public static final String DEFAULT_ERROR_MESSAGE = "未知错误";
 }
