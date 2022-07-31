@@ -2,7 +2,6 @@ package com.sherlocky.common.util;
 
 import com.sherlocky.common.constant.CharPool;
 import com.sherlocky.common.constant.StrPool;
-import sun.security.util.ArrayUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
