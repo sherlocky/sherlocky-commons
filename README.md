@@ -49,9 +49,6 @@ implementation 'com.sherlocky:sherlocky-commons:0.8.0-SNAPSHOT'
 > https://oss.sonatype.org/content/repositories/snapshots/
 
 #### TODO
-- [X] 文件名排序工具类
-- [X] URL工具类
-- [ ] 字符串占位拼接工具类
 - [ ] 集合工具类
 - [ ] Stream相关工具类
 - [ ] 多线程相关工具类
