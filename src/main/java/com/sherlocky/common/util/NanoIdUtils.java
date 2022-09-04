@@ -38,6 +38,13 @@ public class NanoIdUtils {
     public static final int DEFAULT_SIZE = 21;
 
     /**
+     * 不应该被实例化，请使用<code>NanoIdUtils.randomNanoId()</code>
+     */
+    private NanoIdUtils() {
+        //Do Nothing
+    }
+
+    /**
      * 生成伪随机的NanoId字符串，长度为默认的{@link #DEFAULT_SIZE}，使用密码安全的伪随机生成器
      *
      * @return 伪随机的NanoId字符串
