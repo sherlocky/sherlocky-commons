@@ -22,7 +22,7 @@ public class StreamUtils {
      * @return
      * @param <E>
      */
-    public <E> List<E> concatList(List<E>... list) {
+    public static <E> List<E> concatList(List<E>... list) {
         return Stream.of(list).flatMap(Collection::stream).collect(Collectors.toList());
     }
 
@@ -34,7 +34,7 @@ public class StreamUtils {
      * @param <K>
      * @param <E>
      */
-    public <K, E> Map<K, List<E>> toListMap(List<E> list, Function<E, K> keyFunction) {
+    public static <K, E> Map<K, List<E>> groupByKey(List<E> list, Function<E, K> keyFunction) {
         return list.stream().collect(Collectors.groupingBy(keyFunction));
     }
 
