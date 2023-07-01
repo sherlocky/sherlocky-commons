@@ -1,10 +1,7 @@
 package com.sherlocky.common.util;
 
-import org.checkerframework.checker.units.qual.K;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import org.apache.commons.collections4.CollectionUtils;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,7 +32,26 @@ public class StreamUtils {
      * @param <E>
      */
     public static <K, E> Map<K, List<E>> groupByKey(List<E> list, Function<E, K> keyFunction) {
+        if (CollectionUtils.isEmpty(list)) {
+            return Collections.emptyMap();
+        }
         return list.stream().collect(Collectors.groupingBy(keyFunction));
+    }
+
+    /**
+     * list转Map（value为元素自身）
+     * @param list
+     * @param keyFunction
+     * @return
+     * @param <K>
+     * @param <E>
+     */
+    public static <K, E> Map<K, E> toIdentityMap(List<E> list, Function<E, K> keyFunction) {
+        if (CollectionUtils.isEmpty(list)) {
+            return Collections.emptyMap();
+        }
+        return list.stream()//.collect(Collectors.toMap(keyFunction, Function.identity(), (l, r) -> l));
+                .collect(HashMap::new, (HashMap<K, E> m, E e) -> m.put(Optional.ofNullable(e).map(keyFunction).get(), e), HashMap::putAll);
     }
 
 }
