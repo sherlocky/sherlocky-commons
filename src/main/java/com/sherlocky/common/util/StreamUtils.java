@@ -18,7 +18,7 @@ public class StreamUtils {
      * 合并List
      * @param list
      * @return
-     * @param <E>
+     * @param <E> list元素泛型
      */
     public static <E> List<E> concatList(List<E>... list) {
         return Stream.of(list).flatMap(Collection::stream).collect(Collectors.toList());
@@ -29,8 +29,8 @@ public class StreamUtils {
      * @param list
      * @param keyFunction
      * @return
-     * @param <K>
-     * @param <E>
+     * @param <K> map key泛型
+     * @param <E> list元素泛型
      */
     public static <K, E> Map<K, List<E>> groupByKey(List<E> list, Function<E, K> keyFunction) {
         if (CollectionUtils.isEmpty(list)) {
@@ -44,8 +44,8 @@ public class StreamUtils {
      * @param list
      * @param keyFunction
      * @return
-     * @param <K>
-     * @param <E>
+     * @param <K> map key泛型
+     * @param <E> list元素泛型
      */
     public static <K, E> Map<K, E> toIdentityMap(List<E> list, Function<E, K> keyFunction) {
         if (CollectionUtils.isEmpty(list)) {
@@ -62,9 +62,9 @@ public class StreamUtils {
      * @param keyFunction
      * @param valueFunction
      * @return
-     * @param <E>
-     * @param <K>
-     * @param <V>
+     * @param <E> list元素泛型
+     * @param <K> map key泛型
+     * @param <V> map value泛型
      */
     public static <E, K, V> Map<K, V> toMap(List<E> list, Function<E, K> keyFunction, Function<E, V> valueFunction) {
         if (CollectionUtils.isEmpty(list)) {
