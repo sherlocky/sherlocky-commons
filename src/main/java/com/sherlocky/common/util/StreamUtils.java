@@ -76,4 +76,20 @@ public class StreamUtils {
                 (HashMap<K, V> m, E e) -> m.put(keyFunction.apply(e), valueFunction.apply(e)), HashMap::putAll);
     }
 
+
+    /**
+     * 转换List（元素类型可变）
+     * @param list
+     * @param elementMapFunction
+     * @return
+     * @param <E> list元素泛型
+     * @param <F> list新元素泛型
+     */
+    public static <E, F> List<F> toList(Collection<E> list, Function<E, F> elementMapFunction) {
+        if (CollectionUtils.isEmpty(list)) {
+            return Collections.emptyList();
+        }
+        return list.stream().map(elementMapFunction).collect(Collectors.toList());
+    }
+
 }
