@@ -92,4 +92,19 @@ public class StreamUtils {
         return list.stream().map(elementMapFunction).collect(Collectors.toList());
     }
 
+    /**
+     * 转换List到Set（元素类型可变）
+     * @param list
+     * @param elementMapFunction
+     * @return
+     * @param <E> list元素泛型
+     * @param <F> list新元素泛型
+     */
+    public static <E, F> Set<F> toSet(Collection<E> list, Function<E, F> elementMapFunction) {
+        if (CollectionUtils.isEmpty(list)) {
+            return Collections.emptySet();
+        }
+        return list.stream().map(elementMapFunction).collect(Collectors.toSet());
+    }
+
 }
