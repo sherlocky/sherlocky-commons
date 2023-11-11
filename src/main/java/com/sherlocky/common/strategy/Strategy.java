@@ -3,11 +3,11 @@ package com.sherlocky.common.strategy;
 /**
  * 抽象策略接口
  */
-public interface BaseStrategy<T> {
+public interface Strategy<T> {
 
     /**
      * 执行任务
      * @return
      */
-    boolean process(T task);
+    void process(T task);
 }
