@@ -19,7 +19,7 @@ public class DateUtilsTest {
 
     @Test
     public void test() throws Exception {
-        Date fromDate = org.apache.commons.lang3.time.DateUtils.parseDate("2023-01-07 14:00:00.000", "yyyy-MM-dd HH:mm:ss.SSS");
+        Date fromDate = org.apache.commons.lang3.time.DateUtils.parseDate("2023-10-07 21:00:00.000", "yyyy-MM-dd HH:mm:ss.SSS");
         long startTime = fromDate.getTime();
         long endTime = new Date().getTime();
         int weeks = (int) ((endTime - startTime) / (7 * 24 * 3600 * 1000));
