@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * 默认的策略执行器实现类
  */
-public class StrategyRunnerImpl extends AbstractStrategyRunner<String> {
+public class DefaultStringStrategyRunnerImpl extends AbstractStrategyRunner<String> {
 
     @Override
     public List<Strategy> getStrategies() {
-        return Arrays.asList(new DefaultStrategyImpl());
+        return Arrays.asList(new DefaultStringStrategyImpl());
     }
 }
