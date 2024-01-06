@@ -6,6 +6,10 @@ public class TestCaseUser {
 
     private String email;
 
+    public static TestCaseUser of(Long id, String name, String email) {
+        return new TestCaseUser(id, name, email);
+    }
+
     public TestCaseUser() {
     }
 
