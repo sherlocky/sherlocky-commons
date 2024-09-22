@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
  * @date 2022/7/31
  * @since 0.8.0
  */
-public final class StringUtils {
+public final class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     private StringUtils() {}
 
