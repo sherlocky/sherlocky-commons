@@ -11,6 +11,8 @@ public enum Base64ImageType implements BaseEnum {
     GIF("gif", "image/gif"),
     BMP("bmp", "image/bmp"),
     WEBP("webp", "image/webp"),
+    ICO("icon", "image/x-icon"),
+    TIF("tiff", "image/tiff"),
     SVG("svg", "image/svg+xml"),
     UNKNOWN("", "*");
 
