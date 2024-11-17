@@ -1,6 +1,8 @@
 package com.sherlocky.common.image;
 
+import com.sherlocky.common.constant.StrPool;
 import com.sherlocky.common.core.enumeration.BaseEnum;
+import com.sherlocky.common.util.StringUtils;
 
 /**
  * Base图片类型枚举
@@ -49,5 +51,18 @@ public enum Base64ImageType implements BaseEnum {
             }
         }
         return null;
+    }
+
+    /**
+     * 消除可能存在的data前缀
+     * <p>data:image/png;base64,xxx</p>
+     * <p>data:image/jpeg;base64,xxx</p>
+     * @return
+     */
+    public static String trimDataPrefix(String base64Image) {
+        if (!StringUtils.contains(base64Image, StrPool.COMMA)) {
+            return base64Image;
+        }
+        return StringUtils.substringAfterLast(base64Image, StrPool.COMMA);
     }
 }
