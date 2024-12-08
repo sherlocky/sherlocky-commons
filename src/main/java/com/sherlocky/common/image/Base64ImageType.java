@@ -110,6 +110,14 @@ public enum Base64ImageType implements BaseEnum {
             if ((imageBytes[0] & 0xFF) == 0x42 && (imageBytes[1] & 0xFF) == 0x4D) {
                 return Base64ImageType.BMP;
             }
+            if ((imageBytes[0] & 0xFF) == 0x00 && (imageBytes[1] & 0xFF) == 0x00
+                    && (imageBytes[2] & 0xFF) == 0x01 && (imageBytes[3] & 0xFF) == 0x00) {
+                return Base64ImageType.ICO;
+            }
+            if ((imageBytes[0] & 0xFF) == 0x3C && (imageBytes[1] & 0xFF) == 0x73
+                    && (imageBytes[2] & 0xFF) == 0x76 && (imageBytes[3] & 0xFF) == 0x67) {
+                return Base64ImageType.SVG;
+            }
         }
         return Base64ImageType.UNKNOWN;
     }
