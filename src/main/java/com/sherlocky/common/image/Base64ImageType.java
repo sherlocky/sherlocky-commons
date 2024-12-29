@@ -122,6 +122,12 @@ public enum Base64ImageType implements BaseEnum {
                     && (imageBytes[2] & 0xFF) == 0x2A && (imageBytes[3] & 0xFF) == 0x00) {
                 return Base64ImageType.TIF;
             }
+            if (imageBytes.length > 12) {
+                if ((imageBytes[0] & 0xFF) == 0x52 && (imageBytes[1] & 0xFF) == 0x49
+                        && (imageBytes[2] & 0xFF) == 0x46 && (imageBytes[3] & 0xFF) == 0x46) {
+                    return Base64ImageType.WEBP;
+                }
+            }
         }
         return Base64ImageType.UNKNOWN;
     }
