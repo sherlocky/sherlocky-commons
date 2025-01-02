@@ -96,6 +96,14 @@ public enum Base64ImageType implements BaseEnum {
          * PNG: 89 50 4E 47（Base64 编码后为 iVBORw0KGgo=）
          * GIF: 47 49 46 38（Base64 编码后为 R0lGODdh 或 R0lGODlh）
          * BMP: 42 4D（Base64 编码后为 Qk0=）
+         * ICO: 00 00 01 00（Base64 编码后为 AAABAAEAEBA）
+         * SVG: 3C 73 76 67 （<svg开头，Base64编码后为 PHN2Zy，如果是非<svg开头的，暂时无法识别）
+         * WEBP: 52 49 46 46 xx xx xx xx 57 45 42 50 （RIFF XXXX WEBP）（Base64 编码后为 UklGRxxxRUJQxxx
+         * UklGRn6oBQBXRUJQVlA4IHKoBQAQMQ2dASrYAz4HPpE
+         * UklGRvYfAQBXRUJQVlA4IOofAQAQqAOdASq2A18DPm0ylEgkIq
+         * UklGRnQFAABXRUJQVlA4WAoAAAAQAAAARwAARwAAQUxQSMwAAA
+         * UklGRrYvAABXRUJQVlA4IKovAAAQ
+         * TIFF：49 49 2A 00 或 4D 4D 00 2A （前4个字节 小端「Intel 格式」/大端「Motorola 格式」,没有特定的 Base64 前缀）
          */
         if (imageBytes.length > 4) {
             if ((imageBytes[0] & 0xFF) == 0xFF && (imageBytes[1] & 0xFF) == 0xD8) {
