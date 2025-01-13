@@ -42,7 +42,8 @@ dependencies {
     // javax.annotation.Nullable
     api 'com.google.code.findbugs:jsr305:3.0.2'
     api 'javax.validation:validation-api:2.0.1.Final'
-
+    api 'net.dongliu:apk-parser:2.6.10'
+    api 'dom4j:dom4j:1.6.1'
     // logback日志实现，使用 implementation 不把依赖传递给使用者
     implementation 'ch.qos.logback:logback-classic:1.2.3'
 
